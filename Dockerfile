@@ -14,6 +14,18 @@ RUN apt-get update && apt-get install -y gawk wget git-core sudo cpio \
 RUN adduser jenkins sudo
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+# Location where Jenkins workspace is stored and it is the location
+# where most of build time will be spent. Preferred if this
+# location is on a SSD and if you bind-mount this directory from
+# host using -v.
+RUN mkdir -p /media/jenkins
+RUN chown -R jenkins /media/jenkins
+
+# Location where build history is stored. Usually a large HDD
+# bind-mounted from host with -v.
+RUN mkdir -p /media/storage/jenkins
+RUN chown -R jenkins /media/storage/jenkins
+
 # Switch to user jenkins
 USER jenkins
 
