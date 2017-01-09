@@ -1,4 +1,5 @@
 FROM jenkins:2.32.1
+MAINTAINER Mirza Krak "mirza.krak@hostmobility.com"
 
 # We need to change to root to be able to install with apt-get 
 USER root
