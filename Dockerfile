@@ -30,5 +30,6 @@ RUN chown -R jenkins /media/storage/jenkins
 # Switch to user jenkins
 USER jenkins
 
-RUN install-plugins.sh multiple-scms git git-client github ssh-credentials
+RUN install-plugins.sh multiple-scms git git-client github \
+	ssh-credentials role-strategy
 
