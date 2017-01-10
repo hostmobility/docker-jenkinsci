@@ -6,7 +6,7 @@ USER root
 RUN apt-get update && apt-get install -y gawk wget git-core sudo cpio \
 	diffstat unzip texinfo gcc-multilib u-boot-tools rsync cbootimage bc \
 	build-essential chrpath socat mtd-utils device-tree-compiler mtools lzop \
-	&& rm -rf /var/lib/apt/lists/*
+	dosfstools parted && rm -rf /var/lib/apt/lists/*
 
 # We need to add jenkins to sudo and sudoers because we currently have an
 # ugly script in hostmobility/mx4 repo that requires some commands to be
