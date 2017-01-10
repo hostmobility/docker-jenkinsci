@@ -8,7 +8,7 @@ To build the image, simply invoke
 
 And to run it
 
-	docker run -p 8080:8080 -p 50000:50000 \
+	docker run -p 8080:8080 -p 50000:50000 --privileged \
 		-v /home/builder/jenkins_home/:/var/jenkins_home \
 		-v ~/.ssh:/var/jenkins_home/.ssh \
 		hostmobility/jenkinsci
