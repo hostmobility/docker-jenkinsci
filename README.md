@@ -17,3 +17,13 @@ And to run it
 		-v /media/jenkins:/media/jenkins \
 		-v /media/storage_hdd/jenkins:/media/storage/jenkins \
 		hostmobility/jenkinsci
+
+One can also start bash with the following command
+
+	docker run -it --privileged \
+		-v /home/builder/jenkins_home/:/var/jenkins_home \
+		-v ~/.ssh:/var/jenkins_home/.ssh \
+		-v /media/jenkins:/media/jenkins \
+		-v /media/storage_hdd/jenkins:/media/storage/jenkins \
+		hostmobility/jenkinsci \
+		/bin/bash
