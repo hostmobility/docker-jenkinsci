@@ -27,6 +27,9 @@ RUN chown -R jenkins /media/jenkins
 RUN mkdir -p /media/storage/jenkins
 RUN chown -R jenkins /media/storage/jenkins
 
+# Jenkins http port
+EXPOSE 8888
+
 # Switch to user jenkins
 USER jenkins
 
