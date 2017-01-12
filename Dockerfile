@@ -33,6 +33,9 @@ EXPOSE 8888
 # Switch to user jenkins
 USER jenkins
 
+RUN git config --global user.email "builder@hostmobility.com"
+RUN git config --global user.name "Host Mobility Builder"
+
 RUN install-plugins.sh multiple-scms git git-client github \
 	ssh-credentials role-strategy
 
