@@ -1,6 +1,8 @@
 FROM jenkins:2.46.2
 MAINTAINER Mirza Krak "mirza.krak@hostmobility.com"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 # We need to change to root to be able to install with apt-get 
 USER root
 RUN apt-get update && apt-get install -y gawk wget git-core sudo cpio \
