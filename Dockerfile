@@ -6,7 +6,7 @@ USER root
 RUN apt-get update && apt-get install -y gawk wget git-core sudo cpio \
 	diffstat unzip texinfo gcc-multilib u-boot-tools rsync cbootimage bc \
 	build-essential chrpath socat mtd-utils device-tree-compiler mtools lzop \
-	dosfstools parted kmod python3 && rm -rf /var/lib/apt/lists/*
+	dosfstools parted kmod python3 locales && rm -rf /var/lib/apt/lists/*
 
 # We need to add jenkins to sudo and sudoers because we currently have an
 # ugly script in hostmobility/mx4 repo that requires some commands to be
@@ -29,6 +29,14 @@ RUN chown -R jenkins /media/storage/jenkins
 
 # Jenkins http port
 EXPOSE 8888
+
+## Set LOCALE to UTF8
+#
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    locale-gen en_US.UTF-8 && \
+    dpkg-reconfigure locales && \
+    /usr/sbin/update-locale LANG=en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 # Switch to user jenkins
 USER jenkins
