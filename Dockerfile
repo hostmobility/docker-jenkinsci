@@ -36,6 +36,17 @@ USER jenkins
 RUN git config --global user.email 'builder@hostmobility.com'
 RUN git config --global user.name 'Host Mobility Builder'
 
-RUN install-plugins.sh multiple-scms git git-client github \
-	ssh-credentials role-strategy
+RUN install-plugins.sh \
+	multiple-scms \
+	git \
+	git-client \
+	github \
+	ssh-credentials \
+	role-strategy \
+	blueocean \
+        blueocean-pipeline-editor \
+        delivery-pipeline-plugin \
+	jobConfigHistory \
+	email-ext \
+	mailer \
 
