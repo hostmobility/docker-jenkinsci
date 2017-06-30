@@ -5,7 +5,14 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # We need to change to root to be able to install with apt-get 
 USER root
-RUN apt-get update && apt-get install -y gawk wget git-core sudo cpio \
+
+COPY tar_1.26+dfsg-0.1+deb7u1_amd64.deb /
+
+# Downgrade tar to 1.26 since we use a Yocto release that is not
+# compatible with 1.27 (build breaks)
+RUN apt-get update && dpkg -i /tar_1.26+dfsg-0.1+deb7u1_amd64.deb
+
+RUN apt-get install -y gawk wget git-core sudo cpio \
 	diffstat unzip texinfo gcc-multilib u-boot-tools rsync cbootimage bc \
 	build-essential chrpath socat mtd-utils device-tree-compiler mtools lzop \
 	dosfstools parted kmod python3 locales libsdl1.2-dev file ruby && rm -rf /var/lib/apt/lists/*
