@@ -1,4 +1,4 @@
-FROM jenkins:2.46.2
+FROM jenkins:2.60.1
 MAINTAINER Mirza Krak "mirza.krak@hostmobility.com"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -54,16 +54,16 @@ RUN git config --global user.email 'builder@hostmobility.com'
 RUN git config --global user.name 'Host Mobility Builder'
 
 RUN install-plugins.sh \
-	multiple-scms \
-	git \
-	git-client \
-	github \
-	ssh-credentials \
-	role-strategy \
-	blueocean \
-        blueocean-pipeline-editor \
-        delivery-pipeline-plugin \
-	jobConfigHistory \
-	email-ext \
-	mailer \
+	multiple-scms:0.6 \
+	git:3.3.1 \
+	git-client:2.4.6 \
+	github:1.27.0 \
+	ssh-credentials:1.13 \
+	role-strategy:2.5.0 \
+	blueocean:1.1.2 \
+    blueocean-pipeline-editor:0.2.0 \
+    delivery-pipeline-plugin:1.0.2 \
+	jobConfigHistory:2.16 \
+	email-ext:2.58 \
+	mailer:1.20 \
 
