@@ -6,16 +6,27 @@ ENV DEBIAN_FRONTEND noninteractive
 # We need to change to root to be able to install with apt-get 
 USER root
 
+RUN cd / && wget http://hostmobility.org/mx4/tools/gcc-linaro-arm-linux-gnueabihf-2012.09-20120921_linux.tar.bz2
+
+RUN tar xvf /gcc-linaro-arm-linux-gnueabihf-2012.09-20120921_linux.tar.bz2 -C /opt
+
 COPY tar_1.26+dfsg-0.1+deb7u1_amd64.deb /
+
+RUN dpkg --add-architecture i386
 
 # Downgrade tar to 1.26 since we use a Yocto release that is not
 # compatible with 1.27 (build breaks)
 RUN apt-get update && dpkg -i /tar_1.26+dfsg-0.1+deb7u1_amd64.deb
 
-RUN apt-get install -y gawk wget git-core sudo cpio \
+RUN apt-get install -y gawk wget git-core sudo cpio flex bison rake \
 	diffstat unzip texinfo gcc-multilib u-boot-tools rsync cbootimage bc \
 	build-essential chrpath socat mtd-utils device-tree-compiler mtools lzop \
-	dosfstools parted kmod python3 locales libsdl1.2-dev file ruby && rm -rf /var/lib/apt/lists/*
+	dosfstools parted kmod python3 locales libsdl1.2-dev file ruby \
+    clang rake curl gcc-mingw-w64-i686 doxygen doxygen-gui graphviz cmake \
+    qt4-dev-tools libc6-dev-i386 g++-multilib libdb5.3-dev p7zip wine32 vim nano \
+    lib32z1-dev && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/wine32 /usr/bin/wine
 
 # We need to add jenkins to sudo and sudoers because we currently have an
 # ugly script in hostmobility/mx4 repo that requires some commands to be
